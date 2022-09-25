@@ -1,4 +1,10 @@
-const ProjectsStatsCard = ({ project }: { project: any }) => {
+const ProjectsStatsCard = ({
+  project,
+  location,
+}: {
+  project: any;
+  location: string;
+}) => {
   return (
     <tr>
       <td>
@@ -21,7 +27,7 @@ const ProjectsStatsCard = ({ project }: { project: any }) => {
       <td>
         <div className="text-dark fs-5">
           <span className="me-2 fw-bold">
-            £{parseInt(project.funding_remain).toLocaleString()}
+            £{parseInt(project.funding_remaining).toLocaleString()}
           </span>
           <span className="fs-7">
             / £{parseInt(project.funding_start).toLocaleString()}
@@ -59,6 +65,15 @@ const ProjectsStatsCard = ({ project }: { project: any }) => {
       </td>
       <td>
         <span className="text-gray-700 fw-bold">Sept 25, 2022</span>
+      </td>
+      <td>
+        <span
+          className={`badge badge-light-${
+            project.action_required ? "danger" : "success"
+          } me-auto`}
+        >
+          {project.action_required ? "Yes" : "No"}
+        </span>
       </td>
       <td>
         <div className="d-flex justify-content-end flex-shrink-0">

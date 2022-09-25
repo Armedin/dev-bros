@@ -2,6 +2,7 @@ import Aside from "./components/Aside";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Projects from "./pages/projects";
 import SingleProject from "./pages/single-project";
+import Feedback from "./pages/feedback";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
               </Route>
               <Route path="/project/:id">
                 <SingleProject />
+              </Route>
+              <Route path="/feedback">
+                <Feedback />
               </Route>
             </div>
           </div>

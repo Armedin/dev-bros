@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import ProjectsStatsCard from "../components/ProjectsStatsCard";
 import axios from "axios";
 
+const locations = ["Birmingham", "London", "Bath", "Cambridge", "Manchester"];
+
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([]);
   useEffect(() => {
-    axios.get("127.0.0.1:8000/api/projects").then((res) => {
+    axios.get("http://localhost:8000/api/projects").then((res) => {
       setProjects(res.data);
     });
   }, []);
@@ -28,12 +30,13 @@ const Projects = () => {
                 <th className="min-w-100px">Team assigned</th>
                 <th className="min-w-200px">Progress</th>
                 <th className="min-w-100px">Last Update</th>
-                <th className="min-w-100px text-end">Actions</th>
+                <th className="min-w-100px">Action Required</th>
+                <th className="min-w-100px text-end"></th>
               </tr>
             </thead>
             <tbody>
-              {projects.map((project) => (
-                <ProjectsStatsCard project={project} />
+              {projects.map((project, i) => (
+                <ProjectsStatsCard location={locations[i]} project={project} />
               ))}
             </tbody>
           </table>

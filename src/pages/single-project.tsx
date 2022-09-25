@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { Route, Switch, matchPath } from "react-router-dom";
+import AddTargetModal from "../components/AddTargetModal";
 import Post from "../components/Post";
 import Targets from "../components/Targets";
 
 const url = "/project/a53319c004ca8636f";
 const SingleProject = () => {
+  const [show, setShow] = useState(false);
+
   const pathname = window.location.pathname;
   return (
     <div className="app-container container-xxl">
@@ -38,7 +42,7 @@ const SingleProject = () => {
                   className="symbol-label bg-light-danger text-danger fw-bolder"
                   style={{ fontSize: 40 }}
                 >
-                  T
+                  P2
                 </span>
               </div>
             </div>
@@ -47,7 +51,7 @@ const SingleProject = () => {
                 <div className="d-flex flex-column">
                   <div className="d-flex align-items-center mb-1">
                     <a className="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">
-                      Test Project
+                      Project2
                     </a>
                     <span className="badge badge-light-success me-auto">
                       In Progress
@@ -99,11 +103,11 @@ const SingleProject = () => {
                             data-kt-countup-value="75"
                             data-kt-initialized="1"
                           >
-                            10
+                            1
                           </div>
                         </div>
                         <div className="fw-semibold fs-6 text-gray-400">
-                          Open Targets
+                          TODO Targets
                         </div>
                       </div>
                       <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
@@ -115,7 +119,7 @@ const SingleProject = () => {
                             data-kt-countup-prefix="$"
                             data-kt-initialized="1"
                           >
-                            $15,000
+                            $75,000
                           </div>
                         </div>
                         <div className="fw-semibold fs-6 text-gray-400">
@@ -147,6 +151,7 @@ const SingleProject = () => {
                     className="btn btn-sm btn-info me-3"
                     data-bs-toggle="modal"
                     data-bs-target="#kt_modal_new_target"
+                    onClick={() => setShow(true)}
                   >
                     Add Target
                   </a>
@@ -188,6 +193,8 @@ const SingleProject = () => {
           <Post />
         </Route>
       </Switch>
+
+      {show && <AddTargetModal onClose={() => setShow(false)} />}
     </div>
   );
 };

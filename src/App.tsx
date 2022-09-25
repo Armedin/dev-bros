@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Aside from "./components/Aside";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Projects from "./pages/projects";
+import SingleProject from "./pages/single-project";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <div className="d-flex flex-column flex-root">
+          <div className="page d-flex flex-row flex-column-fluid">
+            <Aside />
+            <div
+              className="flex-column flex-row-fluid"
+              style={{ marginTop: 38, marginLeft: 265, padding: "0 30px" }}
+            >
+              <Route path="/projects">
+                <Projects />
+              </Route>
+              <Route path="/project/:id">
+                <SingleProject />
+              </Route>
+            </div>
+          </div>
+        </div>
+      </Switch>
+    </Router>
   );
 }
 
